@@ -1,0 +1,20 @@
+<h1>Hello There!</h1>
+
+<% if @events.any?%>
+<ul>
+	<% @events.each do |event|%>
+	<li>
+		<%= link_to event_path(event) do%>
+		Title: <%= event.title%><br>
+		<%end%>
+
+		Venue: <%= event.venue%><br>
+		Description: <%= event.description%><br>
+		Capacity: <%= event.max_capacity%><br>
+	</li><br>
+	<%end%>
+</ul>
+<%else%>
+		<p>No events found.</p>
+<%end%>
+<%= link_to 'Create New Event', new_event_path %>

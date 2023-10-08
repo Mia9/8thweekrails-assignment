@@ -1,0 +1,21 @@
+<%= form_with model: @event do |f| %>
+	<%= f.label :title %>
+	<%= f.text_field :title%>
+	<br>
+	<%= f.label :venue%>
+	<%= f.text_field :venue%>
+	<br>
+	<%= f.label :description%>
+	<%= f.text_field :description%>
+	<br>
+	<%= f.label :max_capacity%>
+	<%= f.text_field :max_capacity%>
+	<br>
+	
+	<% if @event.new_record? %>
+			<%= f.submit'Create' %>
+	<% else %>
+			<%= f.submit 'Update'%>
+	<% end %>
+<%end%>
+<a href="/">Home</a>

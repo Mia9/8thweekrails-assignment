@@ -1,0 +1,11 @@
+<h2>Title: <%= @event.title%></h2>
+<p>
+Venue: <%= @event.venue%><br>
+Description: <%= @event.description%><br>
+Capacity: <%= @event.max_capacity%><br>
+</p><br>
+<%= link_to 'Edit', edit_event_path(@event) %><br>
+<%= link_to 'Delete Event', event_path(@event),
+	data: {turbo_method: :delete,
+	turbo_confirm: "Are you sure?"}%>
+<br><a href="/">Home</a>
