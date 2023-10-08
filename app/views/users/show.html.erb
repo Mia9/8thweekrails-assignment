@@ -3,14 +3,13 @@
 <%if @user.events.any?%>
 <ul>
 	<% @user.events.each do |event|%>
-	<li>
+	<li><br>
 	Title: <%= event.title%><br>
 			<%if event.photos.attached?%>		
 			<%= image_tag event.photos.first, width: 80, height: 80 %>
 			<%else%>
 				<p>No photo attached.</p>
 			<%end%><br>
-		
 
 		Venue: <%= event.venue%><br>
 		Description: <%= event.description%><br>
