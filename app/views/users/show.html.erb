@@ -1,0 +1,22 @@
+<h2>User Dashboard</h2><br>
+<%= @user.email%><br>
+<%if @user.events.any?%>
+<ul>
+	<% @user.events.each do |event|%>
+	<li>
+	Title: <%= event.title%><br>
+			<%if event.photos.attached?%>		
+			<%= image_tag event.photos.first, width: 80, height: 80 %>
+			<%else%>
+				<p>No photo attached.</p>
+			<%end%><br>
+		
+
+		Venue: <%= event.venue%><br>
+		Description: <%= event.description%><br>
+		Capacity: <%= event.max_capacity%><br>
+		<%end%>
+	</li><br>
+</ul>
+<%end%>
+<br><a href="/">Home</a>

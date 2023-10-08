@@ -9,7 +9,8 @@ class EventsController < ApplicationController
 	end
 
 	def create
-		@event = Event.create(title: params[:event][:title], venue: params[:event][:venue], description: params[:event][:description], max_capacity: params[:event][:max_capacity])
+		# @event = Event.create(event_params)
+		@event = current_user.events.create(event_params)
 		if @event.save
 			redirect_to root_path
 		else
@@ -24,7 +25,7 @@ class EventsController < ApplicationController
 	end
 
 	def update #after edit method, then update the event page
-		@event.update(title: params[:event][:title], venue: params[:event][:venue], description: params[:event][:description], max_capacity: params[:event][:max_capacity])
+		@event.update(event_params)
 		if @event.save
 			redirect_to event_path(@event)
 		else
@@ -41,4 +42,8 @@ class EventsController < ApplicationController
 		def set_event
 			@event = Event.find(params[:id])
 		end
+
+	def event_params
+		params.require(:event).permit(:title, :venue, :description, :max_capacity, photos: [])
+	end
 end

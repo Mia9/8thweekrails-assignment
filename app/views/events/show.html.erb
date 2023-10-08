@@ -4,8 +4,22 @@ Venue: <%= @event.venue%><br>
 Description: <%= @event.description%><br>
 Capacity: <%= @event.max_capacity%><br>
 </p><br>
-<%= link_to 'Edit', edit_event_path(@event) %><br>
-<%= link_to 'Delete Event', event_path(@event),
-	data: {turbo_method: :delete,
-	turbo_confirm: "Are you sure?"}%>
+
+<%if @event.photos.attached? %>
+
+		<% @event.photos.each do |photo|%>
+			<%= link_to rails_blob_path(photo, disposition: "attachment") do %>	
+			<%end%>
+		<%= image_tag photo, width: 200, height: 200 %>		
+		<%end%>			
+<%else%>
+		<p>No photo attached.</p>
+<%end%><br>
+
+<%if current_user == @event.user%>
+	<%= link_to 'Edit', edit_event_path(@event) %><br>
+	<%= link_to 'Delete Event', event_path(@event),
+		data: {turbo_method: :delete,
+		turbo_confirm: "Are you sure?"}%>
+<%end%>
 <br><a href="/">Home</a>
